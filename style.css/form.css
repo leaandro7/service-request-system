@@ -1,0 +1,72 @@
+/* Ocupa toda a tela e centraliza o formulário */
+.form-wrapper {
+  height: 100vh;
+  background: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Caixa do formulário */
+.form-box {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Título */
+.form-box h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Rótulos */
+.form-box label {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Inputs e selects */
+.form-box select,
+.form-box textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-box select:focus,
+.form-box textarea:focus {
+  border-color: #007bff;
+}
+
+/* Textarea */
+.form-box textarea {
+  resize: none;
+}
+
+/* Botão */
+.form-box button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-box button:hover {
+  background: #0056b3;
+}
