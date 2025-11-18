@@ -46,17 +46,25 @@ foreach ($chamados as $chamado) {
             <div class="dashboard-cards">
                 <div class="ticket-card">
 
-                    <p class="card-title">Chamados Abertos</p>
+                    <div class="card-header">
+                        <p class="card-title">Chamados Abertos </p>
+                        <i class="fa-solid fa-list"></i>
+                    </div>
+
                     <p class="card-value"><?= $total_abertos ?></p>
-                    <span style="opacity: 0;">
-                        <p>Relação</p>
-                        <p>50%</p>
+                    <span>
+                        <p>Totais</p>
                     </span>
 
                 </div>
 
                 <div class="ticket-card" style="background-color: #ffe6099d; color: black;">
-                    <p class="card-title">Em andamento</p>
+
+                    <div class="card-header">
+                        <p class="card-title">Em Andamento</p>
+                        <i class="fa-solid fa-hourglass-start"></i>
+                    </div>
+
                     <p class="card-value"><?= $total_andamento ?></p>
                     <span>
                         <p>Relação</p>
@@ -69,7 +77,12 @@ foreach ($chamados as $chamado) {
                 </div>
 
                 <div class="ticket-card" style="background-color: #1ac734; color: black;">
-                    <p class="card-title">Concluídos</p>
+
+                    <div class="card-header">
+                        <p class="card-title">Concluídos</p>
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+
                     <p class="card-value"><?= $total_concluido ?></p>
                     <span>
                         <p>Relação</p>
@@ -82,7 +95,12 @@ foreach ($chamados as $chamado) {
                 </div>
 
                 <div class="ticket-card" style="background-color: #ff4133c7; color: black;">
-                    <p class="card-title">Suspensos</p>
+
+                    <div class="card-header">
+                        <p class="card-title">Suspensos</p>
+                        <i class="fa-solid fa-ban"></i>
+                    </div>
+
                     <p class="card-value"><?= $total_suspenso ?></p>
                     <span>
                         <p>Relação</p>
@@ -106,7 +124,10 @@ foreach ($chamados as $chamado) {
                 <tr>
                     <th>ID</th>
                     <th>Categoria</th>
-                    <th>Resolução</th>
+
+                    <!-- RESOLUÇÃO COMENTADA -->
+                    <!-- <th>Resolução</th> -->
+
                     <th>Turno</th>
                     <th>Status</th>
                 </tr>
@@ -136,11 +157,8 @@ foreach ($chamados as $chamado) {
 
                     <?php foreach ($chamados as $chamado): ?>
                         <tr id=<?= $chamado['id'] ?> class="row-click">
-                            <td><?= htmlspecialchars($chamado['id']) ?></td>
+                            <td><?= "#" . str_pad($chamado['id'], 4, "0", STR_PAD_LEFT) ?></td>
                             <td><?= htmlspecialchars($chamado['categoria']) ?></td>
-
-                            <!-- Resolução -->
-                            <td><?= $chamado['duracao'] !== null ? htmlspecialchars($chamado['duracao']) . " segundos" : '00:00' ?></td>
 
                             <!-- Turno -->
                             <td><?= htmlspecialchars($chamado['turno']) ?></td>
@@ -167,18 +185,27 @@ foreach ($chamados as $chamado) {
 
 <!-- MODAL -->
 <div id="modal" class="modal">
-    <div class="modal-content">
-        <span id="closeModal" class="close">&times;</span>
-        <h2>Detalhes do Chamado</h2>
-        <p><strong>Categoria:</strong> <span id="m_categoria"></span></p>
-        <p><strong>Descrição:</strong> <span id="m_descricao"></span></p>
-        <p><strong>Status:</strong> <span id="m_status"></span></p>
 
-        <!-- Duraçção -->
-        <p id="duracao_wrap" style="display:none;">
-            <strong>Duração:</strong>
-            <span id="m_duracao"></span> minutos
-        </p>
+
+    <div class="modal-content">
+
+        <div class="modal-content-header">
+            <h2>Detalhes do Chamado</h2>
+            <span id="closeModal" class="close">&times;</span>
+        </div>
+
+        <div class="modal-content-details">
+
+            <p><strong>Categoria:</strong> <span id="m_categoria"></span></p>
+            <p><strong>Descrição:</strong> <span id="m_descricao"></span></p>
+            <p><strong>Status:</strong> <span id="m_status"></span></p>
+
+            <!-- Duraçção -->
+            <p id="duracao_wrap" style="display:none;">
+                <strong>Duração:</strong>
+                <span id="m_duracao"></span> minutos
+            </p>
+        </div>
 
         <div id="buttonsArea"></div>
     </div>
@@ -209,6 +236,9 @@ foreach ($chamados as $chamado) {
 
             const item = chamados.find(c => c.id == row.id)
 
+            // Convertendo tempo de SEGUNDOS para MM:SS
+            const duracao = formatarSegundos(item.duracao)
+
             // Substituindo valores no modal
             $('m_categoria').textContent = item.categoria;
             $('m_descricao').textContent = item.descricao;
@@ -216,7 +246,7 @@ foreach ($chamados as $chamado) {
             // Duração (Só aparecer se for maior que 0 (se tiver sido concluída))
             if (item.duracao > 0) {
                 $('duracao_wrap').style.display = "block";
-                $('m_duracao').textContent = item.duracao;
+                $('m_duracao').textContent = duracao; // segundos convertidos
             } else {
                 $('duracao_wrap').style.display = "none";
             }
@@ -225,20 +255,21 @@ foreach ($chamados as $chamado) {
             statusEl.textContent = statusText[item.status] ?? "Desconhecido";
             statusEl.className = ""; // limpa classes
             statusEl.classList.add(statusClass[item.status]);
+            statusEl.classList.add("status");
             // Substituindo valores no modal - FIM //
 
             // botões dinâmicos baseado só no vetor
             const area = document.getElementById('buttonsArea');
             area.innerHTML = '';
             if (item.status == 0) {
-                area.innerHTML = `<button onclick="iniciar(${item.id})">Iniciar</button>`;
+                area.innerHTML = `<button class="start-btn" onclick="iniciar(${item.id})">Iniciar</button>`;
             } else if (item.status == 1) {
                 area.innerHTML = `
-                <button onclick="finalizar(${item.id})">Finalizar</button>
-                <button onclick="suspender(${item.id})">Suspender</button>
+                <button class="finish-btn" onclick="finalizar(${item.id})">Concluir</button>
+                <button class="suspend-btn" onclick="suspender(${item.id})">Suspender</button>
             `;
             } else if (item.status == 3) {
-                area.innerHTML = `<button onclick="iniciar(${item.id})">Reiniciar</button>`;
+                area.innerHTML = `<button class="reset-btn" onclick="iniciar(${item.id})">Reiniciar</button>`;
             }
             // Abrir modal
             document.getElementById("modal").style.display = "flex";
@@ -297,5 +328,14 @@ foreach ($chamados as $chamado) {
                 console.log(res);
             });
         location.reload()
+    }
+
+
+    // Função de Conversão
+    function formatarSegundos(segundos) {
+        const min = Math.floor(segundos / 60);
+        const sec = segundos % 60;
+
+        return String(min).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
     }
 </script>

@@ -19,9 +19,30 @@
       <option value="Noite">Noite</option>
     </select>
 
-    <label for="descricao">Descrição:</label>
-    <textarea name="descricao" id="descricao" rows="4" placeholder="Digite aqui..." required></textarea>
+    <label>Descrição:</label>
+    <textarea name="descricao" id="descricao" rows="4" maxlength="50" placeholder="Digite aqui..." required></textarea>
+    <p id="contadorDesc" style="margin-top: 4px; font-weight: bold;">0 / 50</p>
 
     <button type="submit">Enviar</button>
   </form>
+
+  <script>
+    const $ = id => document.getElementById(id);
+
+    $("descricao").addEventListener("input", () => {
+        const txt = $("descricao").value;
+        const len = txt.length;
+        const max = 50;
+
+        $("contadorDesc").textContent = `${len} / ${max}`;
+
+        if (len >= max) {
+            $("contadorDesc").style.color = "red";
+            $("descricao").style.borderColor = "red";
+        } else {
+            $("contadorDesc").style.color = "";
+            $("descricao").style.borderColor = "";
+        }
+    });
+  </script>
 </div>

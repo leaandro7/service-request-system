@@ -2,13 +2,18 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema</title>
-  <link rel="stylesheet" href="style.css/global.css">
-  <link rel="stylesheet" href="style.css/index.css">
-  <link rel="stylesheet" href="style.css/dashboard.css">
-  <link rel="stylesheet" href="style.css/form.css">
+  <link rel="stylesheet" href="./styles/global.css">
+  <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/dashboard.css">
+  <link rel="stylesheet" href="./styles/dashboard_adm.css">
+  <link rel="stylesheet" href="./styles/">
+  <link rel="stylesheet" href="./styles/form.css">
 </head>
 
 <body>
@@ -17,8 +22,9 @@
     <div class="sidebar">
         <h1>Chamado de Serviço</h1>
         <div class="links">
-            <a href="?page=dashboard"><i class="fas fa-tachometer-alt"></i>DashBoard</a>
-            <a href="?page=form"><i class="fas fa-plus-circle"></i>Novo Chamado</a>
+            <a href="?page=dashboard"><i class="fas fa-table"></i> DashBoard</a>
+            <a href="?page=dashboard_adm"><i class="fas fa-user-cog"></i> Administrador</a>
+            <a href="?page=form"><i class="fas fa-clipboard-list"></i> Novo Chamado</a>
         </div>
     </div>
 
@@ -36,6 +42,11 @@
       ?>
     </main>
   </div>
+
+
+  <style id="teste-start-btn">
+
+</style>
 
 </body>
 

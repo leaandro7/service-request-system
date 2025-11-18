@@ -8,9 +8,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $turno = $_POST['turno'];
     $descricao = $_POST['descricao'];
 
+    // VALIDAÇÃO: Descrição deve ter no máximo 50 caracteres
+    if (strlen($descricao) > 50) {
+        die("Erro: A descrição deve ter no máximo 50 caracteres.");
+    }
+
     if (!empty($categoria) && !empty($turno)) {
-        // descricao não pode ser usado sem aspas, pois é comando sql
-        $stmt = $pdo->prepare("INSERT INTO chamados (categoria, turno, descricao) VALUES (:categoria, :turno, :descricao)");
+
+        $stmt = $pdo->prepare("
+            INSERT INTO chamados (categoria, turno, descricao) 
+            VALUES (:categoria, :turno, :descricao)
+        ");
+
         $stmt->execute([
             ":categoria" => $categoria,
             ":turno" => $turno,
@@ -19,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: index.php?page=dashboard");
         exit;
+
     } else {
-        echo ("POST falhou");
+        echo "POST falhou";
     }
 }

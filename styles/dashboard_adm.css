@@ -1,0 +1,263 @@
+/* ======= LAYOUT GERAL ======= */
+
+.adm-dashboard {
+    width: 100%;
+}
+
+.adm-dashboard-header {
+    width: 100%;
+    height: 180px;
+    padding-top: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f5f7fa;
+    border-bottom: 2px solid black;
+}
+
+.adm-dashboard-header h1 {
+    margin-left: 10px;
+}
+
+.adm-dashboard-content {
+    padding: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.adm-text-dashboard-content {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+/* ======= TABELA ======= */
+
+.adm-table-section {
+    margin-top: 2rem;
+}
+
+.adm-table-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.adm-service-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.adm-service-table th,
+.adm-service-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.adm-service-table th {
+    background-color: #f5f7fa;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* Desativa hover no cabeçalho */
+.adm-service-table thead:first-child {
+    pointer-events: none;
+}
+
+.adm-service-table tr:hover {
+    background-color: #00000034;
+    cursor: pointer;
+}
+
+/* ======= BOTÃO DELETE ======= */
+
+.btn-delete {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.2s ease;
+}
+
+.btn-delete:hover {
+    opacity: 0.8;
+}
+
+/* ======= BOTÃO EDITAR ======= */
+
+.btn-edit {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 6px;
+    transition: 0.2s ease;
+}
+
+.btn-edit:hover {
+    opacity: 0.8;
+}
+
+/* ======= MODAL BASE ======= */
+
+.adm-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.adm-modal-content {
+    background: white;
+    padding: 20px;
+    width: 420px;
+    border-radius: 8px;
+    position: relative;
+    animation: adm-aparecer .2s ease-out;
+
+}
+
+.adm-close {
+    float: right;
+    cursor: pointer;
+    font-size: 30px;
+    margin-top: -10px;
+}
+
+.delete-btn-modal {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    margin-top: 16px;
+}
+
+@keyframes adm-aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======= MODAL DE EDIÇÃO ======= */
+
+#editModal .adm-modal-content {
+    width: 480px !important;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+#editModal h2 {
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* Formulário */
+#formEditar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Inputs, selects e textarea */
+#formEditar input[type="text"],
+#formEditar textarea,
+#formEditar select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+#formEditar input[type="text"]:focus,
+#formEditar textarea:focus,
+#formEditar select:focus {
+    border-color: #3498db;
+}
+
+/* Textarea */
+#formEditar textarea {
+    resize: none;
+    height: 90px;
+    width: 96%;
+}
+
+/* ===== Contador de caracteres ===== */
+
+.descricao-container {
+    position: relative;
+    width: 100%;
+}
+
+.contador {
+    margin-top: 4px;
+    font-weight: bold;
+    text-align: right;
+    transition: 0.2s ease;
+}
+
+#edit_descricao.erro {
+    border-color: red !important;
+    background-color: #ffe5e5;
+}
+
+/* ===== Botão salvar ===== */
+
+#formEditar button.btn-edit {
+    width: 100%;
+    font-weight: 600;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #28a745;
+}
+
+#formEditar button.btn-edit:hover {
+    opacity: 0.9;
+}
+
+.descricao-modal-delete {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    /* Permite que o span respeite a largura do modal */
+    display: inline-block;
+    max-width: calc(100% - 100px);
+    /* Ajuste a largura máxima, deixando espaço para o rótulo "Descrição:" */
+
+}
+
+.adm-modal-content p {
+    display: flex;
+    gap: 10px;
+}

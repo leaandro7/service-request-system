@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     switch ($action) {
+
         case "iniciar":
             $stmt = $pdo->prepare("
                 UPDATE chamados
@@ -47,6 +48,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ");
             $stmt->execute([":id" => $id]);
             echo "att suspender FEITA!";
+        break;
+
+        case "editar":
+
+            // VALIDAÇÃO: Descrição deve ter no máximo 50 caracteres
+            if (strlen($_POST['descricao']) > 50) {
+                echo "Erro: A descrição deve ter no máximo 50 caracteres.";
+                exit;
+            }
+
+            $stmt = $pdo->prepare("
+                UPDATE chamados
+                SET 
+                    categoria = :categoria,
+                    descricao = :descricao,
+                    turno = :turno
+                WHERE id = :id
+            ");
+
+            $stmt->execute([
+                ":categoria" => $_POST['categoria'],
+                ":descricao" => $_POST['descricao'],
+                ":turno"     => $_POST['turno'],
+                ":id"        => $_POST['id']
+            ]);
+
+            echo "edit ok"; 
         break;
     }
 
