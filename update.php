@@ -51,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         break;
 
         case "editar":
-
             // VALIDAÇÃO: Descrição deve ter no máximo 50 caracteres
             if (strlen($_POST['descricao']) > 50) {
                 echo "Erro: A descrição deve ter no máximo 50 caracteres.";

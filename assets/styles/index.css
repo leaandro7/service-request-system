@@ -55,3 +55,14 @@
     padding: 50px;
     background-color: #f5f7fa;
 }
+
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    & img {
+        height: 200px;
+    }
+}

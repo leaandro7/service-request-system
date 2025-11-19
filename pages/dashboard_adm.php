@@ -177,7 +177,6 @@ const chamados = <?= json_encode($chamados) ?>;
      * DELETAR
      */
     function deletar(id) {
-        if (!confirm("Tem certeza que deseja deletar este chamado?")) return;
 
         fetch("delete.php", {
             method: "POST",

@@ -8,19 +8,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema</title>
-  <link rel="stylesheet" href="./styles/global.css">
-  <link rel="stylesheet" href="./styles/index.css">
-  <link rel="stylesheet" href="./styles/dashboard.css">
-  <link rel="stylesheet" href="./styles/dashboard_adm.css">
-  <link rel="stylesheet" href="./styles/">
-  <link rel="stylesheet" href="./styles/form.css">
+  <link rel="stylesheet" href="./assets/styles/global.css">
+  <link rel="stylesheet" href="./assets/styles/index.css">
+  <link rel="stylesheet" href="./assets/styles/dashboard.css">
+  <link rel="stylesheet" href="./assets/styles/dashboard_adm.css">
+  <link rel="stylesheet" href="./assets/styles/">
+  <link rel="stylesheet" href="./assets/styles/form.css">
 </head>
 
 <body>
 
   <div class="container">
     <div class="sidebar">
-        <h1>Chamado de Serviço</h1>
+
+      <!-- LOGO -->
+      <div class="sidebar-header">
+        <img src="./assets/images/logo-call-tech.png" alt="">
+      </div>
+    
         <div class="links">
             <a href="?page=dashboard"><i class="fas fa-table"></i> DashBoard</a>
             <a href="?page=dashboard_adm"><i class="fas fa-user-cog"></i> Administrador</a>
@@ -37,15 +42,13 @@
       if (file_exists($file)) {
         include $file;
       } else {
-        echo "<p>Página não encontrada 😕</p>";
+        echo "<p>Página não encontrada</p>";
       }
       ?>
     </main>
   </div>
 
-
   <style id="teste-start-btn">
-
 </style>
 
 </body>

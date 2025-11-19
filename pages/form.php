@@ -6,9 +6,19 @@
     <select name="categoria" id="categoria" required>
       <option value="">Selecione...</option>
       <option value="Suporte Técnico">Suporte Técnico</option>
-      <option value="Configuração de Software">Configuração de Software</option>
-      <option value="Problema com periféricos">Problema com periféricos</option>
-      <option value="Falha na Autenticação">Falha na Autenticação</option>
+      <option value="Instalação de Software">Instalação de Software</option>
+      <option value="Atualização de Sistema">Atualização de Sistema</option>
+      <option value="Problemas de Rede">Problemas de Rede</option>
+      <option value="Erro em Aplicativo">Erro em Aplicativo</option>
+      <option value="Backup de Dados">Backup de Dados</option>
+      <option value="Falha de Hardware">Falha de Hardware</option>
+      <option value="Acesso a Sistemas">Acesso a Sistemas</option>
+      <option value="Solicitação de Equipamento">Solicitação de Equipamento</option>
+      <option value="Atualização de Driver">Atualização de Driver</option>
+      <option value="Suporte Remoto">Suporte Remoto</option>
+      <option value="Configuração de Rede">Configuração de Rede</option>
+      <option value="Problema de Segurança">Problema de Segurança</option>
+
     </select>
 
     <label for="turno">Turno:</label>
@@ -30,19 +40,19 @@
     const $ = id => document.getElementById(id);
 
     $("descricao").addEventListener("input", () => {
-        const txt = $("descricao").value;
-        const len = txt.length;
-        const max = 50;
+      const txt = $("descricao").value;
+      const len = txt.length;
+      const max = 50;
 
-        $("contadorDesc").textContent = `${len} / ${max}`;
+      $("contadorDesc").textContent = `${len} / ${max}`;
 
-        if (len >= max) {
-            $("contadorDesc").style.color = "red";
-            $("descricao").style.borderColor = "red";
-        } else {
-            $("contadorDesc").style.color = "";
-            $("descricao").style.borderColor = "";
-        }
+      if (len >= max) {
+        $("contadorDesc").style.color = "red";
+        $("descricao").style.borderColor = "red";
+      } else {
+        $("contadorDesc").style.color = "";
+        $("descricao").style.borderColor = "";
+      }
     });
   </script>
 </div>
