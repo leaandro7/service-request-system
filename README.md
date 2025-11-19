@@ -15,7 +15,7 @@ MySQL: Banco de dados para armazenamento dos chamados.
 HTML/CSS/JS: Interface básica para interação do usuário.
 
 **Participantes:**
-Leandro Silva
-Pedro Cardoso
-Paulo do Nascimento
+Leandro Silva,
+Pedro Cardoso,
+Paulo do Nascimento,
 Maycon Texeira
